@@ -2,6 +2,8 @@
 
 import { useFormState } from "react-dom";
 import { submitCombination } from "./actions";
+import { OTPInput } from "input-otp";
+import Slot from "./components/Slot";
 
 export default function Home() {
   const [state, action] = useFormState(submitCombination, {
@@ -20,11 +22,16 @@ export default function Home() {
               Combination
             </label>
             <div className="flex flex-row justify-between mt-0.5 gap-x-4">
-              <input
+              <OTPInput
                 name="combination"
-                type="number"
-                placeholder="Combination"
-                className="bg-white py-2 px-3 rounded-md flex-1 text-sm"
+                maxLength={10}
+                render={({ slots }) => (
+                  <div className="flex">
+                    {slots.map((slot, idx) => (
+                      <Slot key={idx} {...slot} />
+                    ))}
+                  </div>
+                )}
               />
 
               <button
@@ -36,24 +43,6 @@ export default function Home() {
             </div>
           </form>
         </div>
-
-        {/* <div className="mt-12 space-y-2 bg-white px-8 py-10 rounded-md">
-          <div className="relative flex items-center justify-between">
-            <div className="bg-white relative z-20 pr-0.5">Attempts</div>
-            <div className="bg-white relative z-20 pl-0.5">
-              {state.attempts}
-            </div>
-            <div className="absolute w-full border-dotted border-b-2 border-black -mb-2.5 z-10" />
-          </div>
-
-          <div className="relative flex items-center justify-between">
-            <div className="bg-white relative z-20 pr-0.5">Time taken</div>
-            <div className="bg-white relative z-20 pl-0.5">
-              {state.time_taken}s
-            </div>
-            <div className="absolute w-full border-dotted border-b-2 border-black -mb-2.5 z-10" />
-          </div>
-        </div> */}
 
         <div className="mt-12 space-y-2">
           <div className="relative flex items-center justify-between">

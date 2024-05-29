@@ -1,34 +1,27 @@
+"use client";
+
+import { useFormState } from "react-dom";
+import { submitCombination } from "./actions";
+
 export default function Home() {
-  const submitCombination = async (formData: FormData) => {
-    "use server";
-
-    const rawFormData = {
-      actual_combination: formData.get("combination"),
-    };
-
-    const res = await fetch("http://127.0.0.1:5000/api/crack_safe", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(rawFormData),
-    });
-
-    const data = await res.json();
-    const attempts = data.attempts;
-    const time_taken = data.time_taken;
-
-    console.log(attempts, time_taken);
-  };
+  const [state, action] = useFormState(submitCombination, {
+    attempts: 0,
+    time_taken: 0,
+  });
 
   return (
     <main className="">
       <h1>Forml OA</h1>
       <div>
-        <form action={submitCombination}>
+        <form action={action}>
           <input name="combination" placeholder="Combination" />
-          <button>Submit</button>
+          <button type="submit">Submit</button>
         </form>
+      </div>
+
+      <div>
+        <div>{state.attempts}</div>
+        <div>{state.time_taken}</div>
       </div>
     </main>
   );

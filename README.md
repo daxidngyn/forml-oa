@@ -10,14 +10,14 @@ Forml OA (007) created by David Nguyen.
 
 ## Running
 
-Run the backend Flask server:
+Run the backend Flask server (http://localhost:5000):
 
 ```
 cd backend
 flask run
 ```
 
-Install and run the frontend Next.js server:
+Install and run the frontend Next.js server (http://localhost:3000):
 
 ```
 cd frontend

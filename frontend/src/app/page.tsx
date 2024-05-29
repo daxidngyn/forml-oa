@@ -12,12 +12,14 @@ export default function Home() {
   });
 
   return (
-    <main className="flex flex-col items-center justify-center p-24">
+    <main className="flex flex-col items-center justify-center sm:p-24">
       <div className="max-w-2xl mx-auto bg-slate-50 py-16 px-12 rounded-lg w-full">
-        <h1 className="text-2xl font-medium">Forml OA (007) - David Nguyen</h1>
+        <h1 className="text-xl sm:text-2xl font-medium">
+          Forml OA (007) - David Nguyen
+        </h1>
 
         <div className="mt-12 w-full rounded-sm">
-          <form action={action}>
+          <form action={action} className="hidden sm:block">
             <label htmlFor="combination" className="text-sm">
               Combination
             </label>
@@ -37,6 +39,27 @@ export default function Home() {
               <button
                 type="submit"
                 className="bg-slate-900 text-slate-50 px-4 rounded-md"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+
+          <form action={action} className="sm:hidden">
+            <label htmlFor="combination" className="text-sm">
+              Combination
+            </label>
+            <div className="flex flex-col justify-between mt-0.5 gap-x-4">
+              <input
+                placeholder="Combination"
+                name="combination"
+                type="number"
+                className="px-3 py-2 rounded-md w-full"
+              />
+
+              <button
+                type="submit"
+                className="bg-slate-900 text-slate-50 px-4 py-2 mt-4 rounded-md"
               >
                 Submit
               </button>
